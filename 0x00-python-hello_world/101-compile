@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get the Python script filename from the environment variable
+filename=$PYFILE
+
+# Check if the filename is provided
+if [ -z "$filename" ]; then
+  echo "Error: PYFILE environment variable is not set."
+  exit 1
+fi
+
+# Check if the file exists
+if [ ! -f "$filename" ]; then
+  echo "Error: File '$filename' does not exist."
+  exit 1
+fi
+
+# Compile the Python script
+output="${filename}c"
+echo "Compiling $filename ..."
+python -m compileall "$filename" > /dev/null 2>&1
+
+# Check if the compilation was successful
+if [ $? -eq 0 ]; then
+  echo "Compilation successful. Output file: $output"
+else
+  echo "Error: Compilation failed."
+  exit 1
+fi
