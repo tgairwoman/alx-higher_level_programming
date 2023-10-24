@@ -3,44 +3,51 @@
 
 
 class Square:
+    """ Defining a class square """
     def __init__(self, size=0):
-        self._size = size
+        """ Initializing a square class
+        Args: size=0: size of the square
+         """
+        self.__size = size
 
     @property
     def size(self):
-        return self._size
+        """ Getting the size of the square """
+        return self.__size
 
     @size.setter
     def size(self, value):
-        if not isinstance(value, (int, float)):
-            raise TypeError("size must be a number")
+        """ Setting the size of the square """
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
         if value < 0:
             raise ValueError("size must be >= 0")
-        self._size = value
+        self.__size = value
 
     def area(self):
-        return self.size ** 2
+        """ Calculating the area of the square """
+        return (self.__size ** 2)
 
     def __eq__(self, other):
-        if isinstance(other, Square):
-            return self.area() == other.area()
-        return False
+        """ Comparing two squares """
+        return self.area() == other.area()
 
     def __ne__(self, other):
-        return not self.__eq__(other)
+        """ Comparing != two squares """
+        return self.area() != other.area()
 
     def __lt__(self, other):
-        if isinstance(other, Square):
-            return self.area() < other.area()
-        return False
+        """ Comparing < two squares """
+        return self.area() < other.area()
 
     def __le__(self, other):
-        return self.__eq__(other) or self.__lt__(other)
+        """ Comparing <= two squares """
+        return self.area() <= other.area()
 
     def __gt__(self, other):
-        if isinstance(other, Square):
-            return self.area() > other.area()
-        return False
+        """ Comparing > two squares """
+        return self.area() > other.area()
 
     def __ge__(self, other):
-        return self.__eq__(other) or self.__gt__(other)
+        """ Comparing >= two squares """
+        return self.area() >= other.area()
