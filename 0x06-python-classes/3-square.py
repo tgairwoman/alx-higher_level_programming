@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" This class represents a square """
+""" Creating a square class """
 
 
 class Square:
